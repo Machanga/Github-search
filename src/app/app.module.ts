@@ -8,6 +8,7 @@ import { UppercasePipe } from './uppercase.pipe';
 import {HttpClientModule} from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes:Routes=[
   {path:"profile",component:ProfileComponent},
@@ -19,7 +20,8 @@ const routes:Routes=[
     ProfileComponent,
     HighlightDirective,
     UppercasePipe,
-    AboutComponent
+    AboutComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
