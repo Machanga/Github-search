@@ -7,8 +7,12 @@ import { HighlightDirective } from './highlight.directive';
 import { UppercasePipe } from './uppercase.pipe';
 import {HttpClientModule} from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
+import { RouterModule, Routes } from '@angular/router';
 
-
+const routes:Routes=[
+  {path:"profile",component:ProfileComponent},
+  {path:"about",component:AboutComponent}
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +24,8 @@ import { AboutComponent } from './about/about.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
