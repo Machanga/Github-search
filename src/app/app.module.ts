@@ -12,8 +12,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes:Routes=[
   {path:"profile",component:ProfileComponent},
-  {path:"about",component:AboutComponent}
+  {path:"about",component:AboutComponent},
+  {path:"",redirectTo:"/profile",pathMatch:"full"},
+  {path:'**',component:NotFoundComponent}
 ]
+
 @NgModule({
   declarations: [
     AppComponent,
