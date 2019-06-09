@@ -16,6 +16,12 @@ export class ProfileComponent implements OnInit {
   public username: string;
   constructor(private profileService: ProfileService) { }
 
+  searchProfile(){
+    this.profileService.updateProfile(this.username);
+    this.profileService.userRequest();
+    this.profileService.repoRequest();
+    this.reposArray = this.profileService.reposArray;
+  }
   ngOnInit() {
   }
 
