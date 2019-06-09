@@ -13,7 +13,7 @@ export class ProfileService {
   repos:Repo;
   reposArray:any;
   private username:string;
-  apiUrl: "https://api.github.com/users/";
+  
   constructor( private http:HttpClient) {
     this.username = "Machanga";
     this.user = new User ("","","","","","","",0,0,0,0,"");
@@ -36,7 +36,7 @@ export class ProfileService {
       html_url:string;
     }
     let promise = new Promise((resolve,reject)=>{
-      this.http.get<ApiResponse>(this.apiUrl + this.username + '?access_token=' + environment.apiKey).toPromise().then(response=>{
+      this.http.get<ApiResponse>( 'https://api.github.com/repos/' + this.username + environment.apiKey).toPromise().then(response=>{
         this.user.name = Response.name;
         this.user.login = response.login;
         this.user.avatar_url = response.avatar_url;
@@ -53,8 +53,8 @@ export class ProfileService {
         console.log(this.user);
       },
       error=>{
-        console.log("Error!")
-        reject(error);
+      console.log("Error!")
+      reject(error);
       }
       )
     })
@@ -69,7 +69,7 @@ export class ProfileService {
       description:string;
     }
     let promise = new Promise((resolve,reject)=>{
-      this.http.get<ApiResponse>(this.apiUrl + this.username +"/repos" + '?access_token=' + environment.apiKey).toPromise().then(response=>{ {
+      this.http.get<ApiResponse>('https://api.github.com/repos/' + this.username +"/repos" + environment.apiKey).toPromise().then(response=>{ {
         this.repos.name = response.name;
         this.repos.html_url = response.html_url;
         this.repos.language=response.language;
@@ -81,8 +81,8 @@ export class ProfileService {
         console.log(this.reposArray);
       },
       error=>{
-        console.log("Error occured")
-        reject(error)
+        console.log("Error occured");
+        reject(error);
       })
     })
     return promise;

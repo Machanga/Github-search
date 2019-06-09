@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HighlightDirective } from './highlight.directive';
 import { UppercasePipe } from './uppercase.pipe';
 import {HttpClientModule} from '@angular/common/http';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {HttpClientModule} from '@angular/common/http';
     AppComponent,
     ProfileComponent,
     HighlightDirective,
-    UppercasePipe
+    UppercasePipe,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
