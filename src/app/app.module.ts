@@ -5,17 +5,11 @@ import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HighlightDirective } from './highlight.directive';
 import { UppercasePipe } from './uppercase.pipe';
+import { ProfileService } from './profiles/profile.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
-import { RouterModule, Routes } from '@angular/router';
+import {RoutingModule} from './routing/routing.module';
 import { NotFoundComponent } from './not-found/not-found.component';
-
-const routes:Routes=[
-  {path:"profile",component:ProfileComponent},
-  {path:"about",component:AboutComponent},
-  {path:"",redirectTo:"/profile",pathMatch:"full"},
-  {path:'**',component:NotFoundComponent}
-]
 
 @NgModule({
   declarations: [
@@ -30,9 +24,9 @@ const routes:Routes=[
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RoutingModule
   ],
-  providers: [],
+  providers: [ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

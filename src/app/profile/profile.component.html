@@ -1,58 +1,62 @@
-<form>
-    <div class="form-group">
+<section id="banner">
+<br>
+  <div class="container">
+    <div class="row">
+          <form>
+              <div class="form-group ">
+                <div class="container-fluid">
+                  <br>
+                  <input type="text" class="form-control" placeholder="Search username" [(ngModel)]="username" name="username"><br>
+                  <button class="btn btn-dark" type="submit"(click)="search()">Search</button>
+              </div>
+              </div>
+            </form>
+    </div>
+  </div>
+    
       <div class="container">
         <div class="row">
-          <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="Search" [(ngModel)]="username" name="username">
+          <div class="col-md-4">
+            <img width="300px" src="{{user.avatarimg}}" class="rounded-circle img-responsive" alt="profile picture.">
+            <h3 appHighlight> {{user.fullname | uppercase}}</h3>
+            <br> 
+            <ul class="list-group" >
+              <li class="list-group-item ">{{user.bio}}</li>
+              <li class="list-group-item">Username:{{user.user}}</li>
+              <li class="list-group-item">{{user.email}}</li>
+            </ul>
           </div>
-          <div class="col-sm-4">
-            <button class="btn btn-success" (click)="search()">Search</button>
-          </div>
-        </div>
-    </div>
-    </div>
-</form>
 
-<div *ngIf= "profile">
-    <div class="row">
-        <div class="col-sm-4">
-  <div class="panel">
-    <div class="panel-heading">
-      <h3 appHighlight>{{user.login}}</h3>
-    </div>
-    <div class="panel-body">
-          <img src="{{user.avatar_url}}" class="img-circle img-responsive" alt="profile picture">
-        
-          <ul class="list-group">
-            <li class="list-group-item">{{user.name | uppercase}}</li>
-            <li class="list-group-item" *ngIf="user.bio">{{user.bio}}</li>
-            <li class="list-group-item" *ngIf="user.blog"><a href="{{user.blog}}" target = "_blank">{{user.blog}}</a></li>
-            <li class="list-group-item" *ngIf="user.email"><a href="emailto:{{user.email}}">{{user.email}}</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-        <div class="col-sm-8">
-          <div>
+          <div class="col-md-8" style="text-align:center" >
             <p>
-              <span class="label">{{user.followers}} Followers</span>
-              <span class="label">Following: {{user.following}}</span>
-              <span class="label">{{user.public_gists}} Public Gists</span>
-              <span class="label">{{user.public_repos}} Repositories</span>
+              <span class="badge badge-default" style="margin-right: 10px"> {{user.noOfrepos}} Repos</span>
+              <span class="badge badge-primary" style="margin-right: 10px"> {{user.followers}} Follower(s)</span>
+              <span class="badge badge-success" style="margin-right: 10px"> Following {{user.following}}</span>
+              <span class="badge badge-warning"> Created: {{user.date}}</span>
+    
             </p>
-          </div>
-            
-            <div class="panel">
-              <div class="panel-heading">
-                <h3 class="panel-heading">Repositories</h3>
+                <div class="panel panel-default">
+                    <div class="card-header">
+                      <h3><strong><u>Repositories</u></strong></h3>
+                </div>
+            </div>
+            <div class="card" class="repos"  >
+              <div *ngFor="let repo of repoArray.myRepoArray">
+                <div class="panel panel-default">
+                  <div class="card-header">
+                    <h4><strong>{{repo.name}}</strong></h4>
+                  </div>
+                  <div class="card-body">
+                    <p> {{repo.description}}</p>
+                    <button type="button" name="button" class="btn btn-dark"><a href="{{repo.html_url}}" target="_blank">View
+                        on GitHub</a></button>
+                  </div>
+                  
+                </div>
               </div>
-              <div class="panel-body" *ngFor="let repo of reposArray">
-                <p class="clearfix">
-                  {{repo.name}} <a href="{{repo.html_url}}" target="_blank" class="btn btn-md pull-right">View this project on Github</a>
-                </p>
-                <p>{{repo.description}}</p>
-              </div>
+            </div>
           </div>
+      
         </div>
       </div>
-    </div>
+</section>

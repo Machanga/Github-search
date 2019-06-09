@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../profiles/profile.service';
 import {User} from '../user';
 import {Repo} from '../repo';
+import {RepoArray} from '../repo-array'
 
 @Component({
   selector: 'app-profile',
@@ -10,24 +11,25 @@ import {Repo} from '../repo';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  
+  profile:any[];
   user:User;
-  repo: Repo;
-  reposArray: any[];
-  public username: string;
-  constructor(private profileService: ProfileService) { }
-
-  search(){
-    this.profileService.updateProfile(this.username);
-    this.profileService.userRequest();
-    this.profileService.repoRequest();
-    this.reposArray = this.profileService.reposArray;
-  }
-  ngOnInit() {
+  repos: Repo;
+  repoArray: RepoArray;
+  username: string;
+  constructor(private profileService: ProfileService) { 
     this.profileService.userRequest();
     this.user = this.profileService.user;
 
     this.profileService.repoRequest();
-    this.reposArray=this.profileService.reposArray;
+    this.repoArray=this.profileService.repoArray;
+  }
+
+  search(){
+    this.profileService.search(this.username);
+  }
+  ngOnInit() {
+    
   }
 
 }
