@@ -25,11 +25,8 @@ export class ProfileService {
     interface ApiResponse{
       name:string;
       login:string;
-      company:string;
-      location:string;
       avatar_url:string;
       bio:string;
-      hireable:string;
       blog:string;
       email:string;
       followers:number;
@@ -39,10 +36,9 @@ export class ProfileService {
       html_url:string;
     }
     let promise = new Promise((resolve,reject)=>{
-      this.http.get(this.apiUrl + this.username + '?access_token=' + environment.apiKey.toPromise().then(response=>{
-        this.user.name = response.name;
+      this.http.get<ApiResponse>(this.apiUrl + this.username + '?access_token=' + environment.apiKey).toPromise().then(response=>{
+        this.user.name = Response.name;
         this.user.login = response.login;
-        this.user.location = response.location;
         this.user.avatar_url = response.avatar_url;
         this.user.bio = response.bio;
         this.user.blog = response.blog;
@@ -64,5 +60,31 @@ export class ProfileService {
     })
     return promise;
   }
+  repoRequest(){
+    this.reposArray = [];
+    interface ApiResponse{
+      name:string;
+      html_url:string;
+      language: string;
+      description:string;
+    }
+    let promise = new Promise((resolve,reject)=>{
+      this.http.get<ApiResponse>(this.apiUrl + this.username +"/repos" + '?access_token=' + environment.apiKey).toPromise().then(response=>{ {
+        this.repos.name = response.name;
+        this.repos.html_url = response.html_url;
+        this.repos.language=response.language;
+        this.repos.description = response.description;
+        this.reposArray.push(this.repos);
+        this.repos = new Repo("","","","");
 
+        }
+        console.log(this.reposArray);
+      },
+      error=>{
+        console.log("Error occured")
+        reject(error)
+      })
+    })
+    return promise;
+  }
 }
