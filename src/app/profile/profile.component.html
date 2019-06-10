@@ -1,40 +1,35 @@
-<section id="banner">
-<br>
-  <div class="container">
-    <div class="row">
           <form>
-              <div class="form-group ">
-                <div class="container-fluid">
-                  <br>
+            <br>
+              <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6">
+                   
                   <input type="text" class="form-control" placeholder="Search username" [(ngModel)]="username" name="username"><br>
                   <button class="btn btn-dark" type="submit"(click)="search()">Search</button>
+              
+            </div>
+              <div class="col-md-6">
+                      <span class="badge badge-dark" style="margin-right: 10px"> <strong>Repositories:</strong> {{user.repositories}} </span>
+                      <span class="badge badge-primary" style="margin-right: 10px"> <strong>Follower(s):</strong> {{user.followers}}</span>
+                      <span class="badge badge-success" style="margin-right: 10px"> <strong>Following:</strong> {{user.following}}</span>
+                      <span class="badge badge-warning"> Created: {{user.date}}</span>
               </div>
+              </div> 
               </div>
-            </form>
-    </div>
-  </div>
-    
-      <div class="container">
+          </form>
         <div class="row">
           <div class="col-md-4">
             <img width="300px" src="{{user.avatarimg}}" class="rounded-circle img-responsive" alt="profile picture.">
-            <h3 appHighlight> {{user.fullname | uppercase}}</h3>
+            <h3 appHighlight>{{user.fullname | uppercase}}</h3>
             <br> 
             <ul class="list-group" >
               <li class="list-group-item ">{{user.bio}}</li>
-              <li class="list-group-item">Username:{{user.user}}</li>
+              <li class="list-group-item"><strong>Username:</strong>{{user.user}}</li>
               <li class="list-group-item">{{user.email}}</li>
             </ul>
           </div>
 
           <div class="col-md-8" style="text-align:center" >
-            <p>
-              <span class="badge badge-default" style="margin-right: 10px"> {{user.noOfrepos}} Repos</span>
-              <span class="badge badge-primary" style="margin-right: 10px"> {{user.followers}} Follower(s)</span>
-              <span class="badge badge-success" style="margin-right: 10px"> Following {{user.following}}</span>
-              <span class="badge badge-warning"> Created: {{user.date}}</span>
-    
-            </p>
                 <div class="panel panel-default">
                     <div class="card-header">
                       <h3><strong><u>Repositories</u></strong></h3>
@@ -56,7 +51,3 @@
               </div>
             </div>
           </div>
-      
-        </div>
-      </div>
-</section>

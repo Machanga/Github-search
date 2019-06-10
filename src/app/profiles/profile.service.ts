@@ -44,7 +44,7 @@ export class ProfileService {
         this.user.bio = response.bio;
         this.user.followers = response.followers;
         this.user.following = response.following;
-        this.user.noOfrepos = response.public_repos;
+        this.user.repositories = response.public_repos;
         this.user.date = response.created_at;
         resolve()
         
@@ -76,7 +76,6 @@ export class ProfileService {
     interface Response{
         name: string;
         description:string;
-        language:string;
         url:string;
     }
     let promise =new Promise((resolve,reject)=>{
