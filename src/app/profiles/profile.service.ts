@@ -36,7 +36,7 @@ export class ProfileService {
         created_at:number;
     }
     let promise = new Promise((resolve,reject)=>{
-      this.http.get<ApiResponse>('https://api.github.com/users/' + this.username +'?access_token=' + environment.apiKey).toPromise().then(response=>{
+      this.http.get<ApiResponse>('https://api.github.com/users/' + this.username +'?access_token=' + environment.apikey).toPromise().then(response=>{
         this.user.avatarimg = response.avatar_url;
         this.user.user = response.login;
         this.user.fullname = response.name;
@@ -59,7 +59,7 @@ export class ProfileService {
   repoRequest(){
     
     let promise = new Promise((resolve,reject)=>{
-      this.http.get('https://api.github.com/users/' + this.username +'/repos?access_token=' + environment.apiKey).toPromise().then(response=>{ 
+      this.http.get('https://api.github.com/users/' + this.username +'/repos?access_token=' + environment.apikey).toPromise().then(response=>{ 
         this.repoArray.myRepoArray=response;
         resolve()
       },
@@ -79,7 +79,7 @@ export class ProfileService {
         url:string;
     }
     let promise =new Promise((resolve,reject)=>{
-        this.http.get<Response>( 'https://api.github.com/repos/' + this.username + '/' + this.reponame + '?access_token=' + environment.apiKey).toPromise().then(response=>{
+        this.http.get<Response>( 'https://api.github.com/repos/' + this.username + '/' + this.reponame + '?access_token=' + environment.apikey).toPromise().then(response=>{
   
             this.repos.name=response.name;
             this.repos.description=response.description;
